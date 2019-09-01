@@ -1,5 +1,8 @@
 # NFSU2 HUD Resizer  
-Control the size of the HUD in Need for Speed: Underground 2.
+
+## Features
+- HUDScale: Controls the size of the HUD and menus.
+- FMVScale: Conotrols the size of FMVs.
 
 ## Credits
 [Aero_](https://github.com/AeroWidescreen) : Creator of NFSU2 HUD Resizer  
