@@ -18,14 +18,13 @@ DWORD HUDSizeCodeCaveExit2 = 0x5C503D;
 DWORD HUDSizeCodeCaveExit3 = 0x5C51DC;
 DWORD DynoSizeCodeCaveExit = 0x50DD9F;
 DWORD FMVSizeCodeCaveExit = 0x51A1C6;
+DWORD ShowcaseMode = 0x836358;
 
 void __declspec(naked) HUDSizeCodeCave()
 {
 	__asm {
 		mov eax, dword ptr ds : [esp]
-		cmp eax, 0x5C7EB4 // HUD Part 1
-		je HUDSizeCodeCaveScale
-		cmp eax, 0x5C7420 // HUD Part 2
+		cmp eax, 0x5C7EB4 // HUD
 		je HUDSizeCodeCaveScale
 		cmp eax, 0x5CC1CB // Mirror
 		je HUDSizeCodeCaveScale
@@ -57,6 +56,12 @@ void __declspec(naked) HUDSizeCodeCave()
 		push esi
 		mov esi, dword ptr ds : [ebp + 0x08]
 		
+		// Checks for Showcase Mode
+		cmp dword ptr ds : [0x836358], 0x01
+		jl HUDSizeCodeCaveFullscreenCheck1
+		test eax, eax
+		jmp HUDSizeCodeCaveExit2
+	
 	HUDSizeCodeCaveFullscreenCheck1:
 		// Checks for Splash Screen
 		cmp dword ptr ds : [esi] , 0x42D55554
@@ -75,6 +80,7 @@ void __declspec(naked) HUDSizeCodeCave()
 		jne HUDSizeCodeCaveFullscreenCheck2
 		cmp dword ptr ds : [esi + 0x34], 0x43F00000
 		jne HUDSizeCodeCaveFullscreenCheck2
+		test eax, eax
 		jmp HUDSizeCodeCaveExit2
 
 	HUDSizeCodeCaveFullscreenCheck2:
@@ -98,6 +104,7 @@ void __declspec(naked) HUDSizeCodeCave()
 		jmp HUDSizeCodeCaveExit2
 
 	HUDSizeCodeCaveNotFullscreen:
+		test eax, eax
 		push edi
 		mov [esp + 0x1B], bl
 		mov [esp + 0x1A], bl
