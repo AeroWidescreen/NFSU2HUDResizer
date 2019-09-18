@@ -64,19 +64,11 @@ void __declspec(naked) HUDSizeCodeCave()
 	
 	HUDSizeCodeCaveFullscreenCheck1:
 		// Checks for Splash Screen
-		cmp dword ptr ds : [esi] , 0x42D55554
-		jne HUDSizeCodeCaveFullscreenCheck2
 		cmp dword ptr ds : [esi + 0x04], 0x00000000
-		jne HUDSizeCodeCaveFullscreenCheck2
-		cmp dword ptr ds : [esi + 0x10], 0x443AAAAA
 		jne HUDSizeCodeCaveFullscreenCheck2
 		cmp dword ptr ds : [esi + 0x14], 0x00000000
 		jne HUDSizeCodeCaveFullscreenCheck2
-		cmp dword ptr ds : [esi + 0x20], 0x443AAAAA
-		jne HUDSizeCodeCaveFullscreenCheck2
 		cmp dword ptr ds : [esi + 0x24], 0x43F00000
-		jne HUDSizeCodeCaveFullscreenCheck2
-		cmp dword ptr ds : [esi + 0x30], 0x42D55554
 		jne HUDSizeCodeCaveFullscreenCheck2
 		cmp dword ptr ds : [esi + 0x34], 0x43F00000
 		jne HUDSizeCodeCaveFullscreenCheck2
@@ -85,19 +77,11 @@ void __declspec(naked) HUDSizeCodeCave()
 
 	HUDSizeCodeCaveFullscreenCheck2:
 		// Checks for Contrast Overlay
-		cmp dword ptr ds : [esi], 0xC2D8AAAC
-		jne HUDSizeCodeCaveNotFullscreen
 		cmp dword ptr ds : [esi + 0x04], 0xC2AA0000
-		jne HUDSizeCodeCaveNotFullscreen
-		cmp dword ptr ds : [esi + 0x10], 0x44706AAA
 		jne HUDSizeCodeCaveNotFullscreen
 		cmp dword ptr ds : [esi + 0x14], 0xC2AA0000
 		jne HUDSizeCodeCaveNotFullscreen
-		cmp dword ptr ds : [esi + 0x20], 0x44706AAA
-		jne HUDSizeCodeCaveNotFullscreen
 		cmp dword ptr ds : [esi + 0x24], 0x440D4000
-		jne HUDSizeCodeCaveNotFullscreen
-		cmp dword ptr ds : [esi + 0x30], 0xC2D8AAAC
 		jne HUDSizeCodeCaveNotFullscreen
 		cmp dword ptr ds : [esi + 0x34], 0x440D4000
 		jne	HUDSizeCodeCaveNotFullscreen
