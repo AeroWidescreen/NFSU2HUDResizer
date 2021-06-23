@@ -12,6 +12,7 @@ float HUDScale;
 float HUDSize;
 float HUDPos;
 float FMVScale;
+bool AutoHideCursor;
 
 DWORD HUDSizeCodeCaveExit1 = 0x5C5026;
 DWORD HUDSizeCodeCaveExit2 = 0x5C503D;
@@ -332,6 +333,7 @@ void Init()
 	// General
 	HUDScale = iniReader.ReadFloat("GENERAL", "HUDScale", 0.92f);
 	FMVScale = iniReader.ReadFloat("GENERAL", "FMVScale", 1.0f);
+	AutoHideCursor = iniReader.ReadInteger("GENERAL", "AutoHideCursor", 1);
 
 	{
 		// HUD Size
@@ -340,6 +342,14 @@ void Init()
 		injector::MakeJMP(0x50DD06, DynoSizeCodeCave, true);
 		// FMV SIze
 		injector::MakeJMP(0x51A1C0, FMVSizeCodeCave, true);
+	}
+
+	if (AutoHideCursor)
+	{
+		// jmp 0x50B786
+		injector::WriteMemory<uint32_t>(0x50B4C6, 0x0002BBE9, true);
+		injector::WriteMemory<uint8_t>(0x50B4CA, 0x00, true);
+		injector::MakeNOP(0x50B4CB, 1, true);
 	}
 }
 	
@@ -357,7 +367,7 @@ BOOL APIENTRY DllMain(HMODULE /*hModule*/, DWORD reason, LPVOID /*lpReserved*/)
 
 		else
 		{
-			MessageBoxA(NULL, "This .exe is not supported.\nPlease use v1.2 NTSC speed2.exe (4,57 MB (4.800.512 bytes)).", "NFSU2 HUD Resizer", MB_ICONERROR);
+			MessageBoxA(NULL, "This .exe is not supported.\nPlease use v1.2 NTSC speed2.exe (4,57 MB (4.800.512 bytes)).", "NFSU2 HUD Resizer by Aero_", MB_ICONERROR);
 			return FALSE;
 		}
 	}
