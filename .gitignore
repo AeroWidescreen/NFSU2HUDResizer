@@ -1,46 +1,22 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-*.asi
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# Misc
-*.vs
-*.ilk
+*.xml
+*.aps
 *.pdb
-*.tlog
-*.log
-*.res
-*.idb
-*.iobj
 *.ipdb
+*.asi
+*.obj
+*.iobj
+*.tlog
+*.db
+*.db-shm
+*.db-wal
+*.suo
+*.opendb
+*.ipch
+*.log
+*.txt
+*.res
+*.pch
+*.ipch
+*.sarif
 *.recipe
-NFSU2HUDResizer/Debug/NFSU2HUDResizer.vcxproj.FileListAbsolute.txt
+*.pchast
